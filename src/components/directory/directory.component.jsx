@@ -50,14 +50,13 @@ class Directory extends React.Component {
   render() {
     return (
       <div className="directory-menu">
-
-        {this.state.sections.map(({title, imageUrl, size, id, linkUrl}) => (
+        {/* usando {...otherSectionProps}, dsto che l'attributo che passo a MenuItem lo chiamo
+        esattamente come la chave dell'array state (sections), prima gli passo l'id all'attributo key,
+        poi faccio lo spread del resto dei parametri così da averli automaticamente come attributi del component  */}
+        {this.state.sections.map(({id, ...otherSectionProps}) => (
           <MenuItem 
             key={id} 
-            title={title} 
-            size={size} 
-            imageUrl={imageUrl} 
-            linkUrl={linkUrl} 
+            {...otherSectionProps} 
           />
         ))}
       </div>
