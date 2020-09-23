@@ -2,6 +2,8 @@ import React from "react";
 
 import "./collection-preview.styles.scss";
 
+import CollectionItem from '../collection-item/collection-item.component';
+
 const CollectionPreview = ({ title, items }) => (
   <div className="collection-preview">
     <h1 className="title">{title.toUpperCase()}</h1>
@@ -11,12 +13,12 @@ const CollectionPreview = ({ title, items }) => (
         CollectionPreview viene renderizzato, la chimata alla funzione con il loop viene 
         chiamata ogni volta e potrebbe comportare un costo in termini di prestazioni.
         Vedremo come gestire la cosa più tardi
-      */}
+      */}    
       {items
         .filter((item, idx) => idx < 4)
-        .map((item) => (
-        <div key={item.id}>{item.name}</div>
-      ))}
+        .map(({ id, ...otherItemProps }) => (
+          <CollectionItem key={id} {...otherItemProps} />
+        ))}
     </div>
   </div>  
 );
