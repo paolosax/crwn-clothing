@@ -44,6 +44,7 @@ class App extends React.Component {
               ...snapShot.data()
             }
           });
+          console.log(this.state);
         });
       } else {
         // se l'utente fa logout, impostiamo il currentUser su null
