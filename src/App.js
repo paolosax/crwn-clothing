@@ -22,10 +22,34 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      // this.setState({ currentUser: user });
-      // console.log(user);
-      createUserProfileDocument(user);
+    // se un utente si iscrive...
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      // verifichiamo se effettivamente si sta iscrivendo (if(userAuth)...)
+      if(userAuth) {
+        // se c'è, prendo lo userRef dal metodo createUserProfileDocument dello user
+        // dall'oggetto userAuth che gli passo sopra 
+        // se non è presente alcun doc, creiamo un nuovo userRef
+        // tramite metodo createUserProfileDocument in firebase.utils
+        // per restituire comunque uno userRef
+        const userRef = await createUserProfileDocument(userAuth);
+
+        // quindi facciamo il subscribe, 
+        // ovvero andiamo a rilevare qualsiasi modifica a quei dati
+        // ma prendiamo anche il primo stato di quei dati
+        // quindi facciamo il setState della nostra app in js
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        });
+      } else {
+        // se l'utente fa logout, impostiamo il currentUser su null
+        // che riceviamo dalla library auth
+        this.setState({currentUser: userAuth});
+      }
     })
   }
 
