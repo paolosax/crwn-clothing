@@ -11,13 +11,6 @@ import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: null
-    }
-  }
 
   unsubscribeFromAuth = null;
 
@@ -25,7 +18,7 @@ class App extends React.Component {
     // se un utente si iscrive...
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       // verifichiamo se effettivamente si sta iscrivendo (if(userAuth)...)
-      if(userAuth) {
+      if (userAuth) {
         // se c'è, prendo lo userRef dal metodo createUserProfileDocument dello user
         // dall'oggetto userAuth che gli passo sopra 
         // se non è presente alcun doc, creiamo un nuovo userRef
@@ -48,7 +41,7 @@ class App extends React.Component {
       } else {
         // se l'utente fa logout, impostiamo il currentUser su null
         // che riceviamo dalla library auth
-        this.setState({currentUser: userAuth});
+        this.setState({ currentUser: userAuth });
       }
     })
   }
@@ -60,7 +53,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
