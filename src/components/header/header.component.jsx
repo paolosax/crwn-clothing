@@ -8,6 +8,7 @@ import './header.styles.scss';
 
 import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 const Header = ({ currentUser }) => (
   <div className='header'>
@@ -32,10 +33,16 @@ const Header = ({ currentUser }) => (
       )}
       <CartIcon />
     </div>
+    <CartDropdown />
   </div>
 );
 
 const mapStateToProps = (state) => ({
+  // "state" è il root-reducer
+  // gli passiamo la prop currentUser con il valore currentUser proveniente dal reducer user
+  // quindi passiamo currentUser alla funzione Header (vedi sopra), mentre in App.js
+  // eliminiamo la prop currentUser dal component <Header /> con il valore provientiente dallo state di app (perché adesso usiamo Redux)
+  // (per cui in app.js elimineremo anche il constructor con dentro l'oggetto state)
   currentUser: state.user.currentUser,
 });
 
