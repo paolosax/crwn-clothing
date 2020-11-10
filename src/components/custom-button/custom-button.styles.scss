@@ -1,4 +1,7 @@
 .custom-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 165px;
   width: auto;
   height: 50px;
@@ -13,23 +16,42 @@
   font-weight: bolder;
   border: none;
   cursor: pointer;
-  
+
   &:hover {
     background-color: white;
     color: black;
     // border: 1px solid black;
-    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,1);
-    -moz-box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,1);
-    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,1);
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 1);
+    -moz-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 1);
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 1);
   }
-  
+
   &.google-sign-in {
     background-color: #4285f4;
     color: white;
+
     &:hover {
       background-color: darken(#4285f4, 5);
       // border: none;
       box-shadow: none;
+    }
+  }
+
+  &.inverted {
+    background-color: white;
+    color: black;
+    // border: 1px solid black;
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 1);
+    -moz-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 1);
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 1);
+
+    &:hover {
+      background-color: black;
+      color: white;
+      // border: 1px solid black;
+      -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 1);
+      -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 1);
+      box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 1);
     }
   }
 }
